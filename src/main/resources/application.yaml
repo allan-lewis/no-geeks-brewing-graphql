@@ -1,0 +1,7 @@
+noGeeksBrewing:
+  brewFather:
+    url: "https://api.brewfather.app/v2/batches?complete=true&limit=10&start_after="
+
+spring:
+  r2dbc:
+    url: "r2dbc:h2:mem:///no-geeks-brewing"

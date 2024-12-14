@@ -1,0 +1,12 @@
+type Query {
+    batches: [Batch]
+}
+
+type Batch {
+    id: ID!
+    name: String
+    batchNumber: Float
+    batchDate: Float
+    status: String
+    style: String
+}
