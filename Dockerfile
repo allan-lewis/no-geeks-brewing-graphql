@@ -2,6 +2,8 @@ FROM maven:latest as build
 
 COPY pom.xml /tmp/pom.xml
 RUN mvn -B -f /tmp/pom.xml dependency:resolve
+RUN echo ls .
+RUN echo ls /tmp/
 
 FROM amazonlinux:2023 as deploy
 
