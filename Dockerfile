@@ -1,6 +1,7 @@
-FROM maven:latest as builder
+FROM maven:latest
 
-RUN mvn package
+COPY pom.xml /tmp/pom.xml
+RUN mvn -B -f /tmp/pom.xml dependency:resolve
 
 # FROM amazonlinux:2023
 
