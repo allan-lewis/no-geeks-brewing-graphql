@@ -31,5 +31,5 @@ ENV LANG=C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-23-amazon-corretto
 
 EXPOSE 8899
-COPY --from=build /tmp/target/no-geeks-brewing-graphql-1.jar no-geeks-brewing-graphql.jar
+COPY --from=build /home/app/target/no-geeks-brewing-graphql-1.jar no-geeks-brewing-graphql.jar
 ENTRYPOINT ["java","-jar","no-geeks-brewing-graphql.jar"]
