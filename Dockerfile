@@ -1,3 +1,7 @@
+FROM maven:latest as builder
+
+RUN mvn package
+
 FROM amazonlinux:2023
 
 ARG version=23.0.1.8-1
@@ -22,6 +26,8 @@ RUN set -eux \
 
 ENV LANG=C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-23-amazon-corretto
+
+
 
 EXPOSE 8899
 COPY ./target/no-geeks-brewing-api.jar no-geeks-brewing-api.jar
