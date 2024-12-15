@@ -3,7 +3,6 @@ FROM maven:latest as build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
-RUN ls /home/app/target
 
 FROM amazonlinux:2023 as deploy
 
@@ -31,5 +30,5 @@ ENV LANG=C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-23-amazon-corretto
 
 EXPOSE 8899
-COPY --from=build /home/app/target/no-geeks-brewing-graphql-1.jar no-geeks-brewing-graphql.jar
+COPY --from=build /home/app/target/no-geeks-brewing-graphql.jar no-geeks-brewing-graphql.jar
 ENTRYPOINT ["java","-jar","no-geeks-brewing-graphql.jar"]
