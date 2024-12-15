@@ -1,9 +1,9 @@
-FROM maven:latest
+FROM maven:latest as build
 
 COPY pom.xml /tmp/pom.xml
 RUN mvn -B -f /tmp/pom.xml dependency:resolve
 
-FROM amazonlinux:2023
+FROM amazonlinux:2023 as deploy
 
 ARG version=23.0.1.8-1
 ARG package_version=1
@@ -28,8 +28,6 @@ RUN set -eux \
 ENV LANG=C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-23-amazon-corretto
 
-
-
-# EXPOSE 8899
-# COPY ./target/no-geeks-brewing-api.jar no-geeks-brewing-api.jar
-# ENTRYPOINT ["java","-jar","no-geeks-brewing-api.jar"]
+EXPOSE 8899
+COPY from=build /tmp/target/no-geeks-brewing-graphql.jar no-geeks-brewing-graphql.jar
+ENTRYPOINT ["java","-jar","no-geeks-brewing-graphql.jar"]
