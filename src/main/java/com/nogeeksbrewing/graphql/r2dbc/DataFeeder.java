@@ -76,7 +76,7 @@ public class DataFeeder {
                             .subscribe(before -> {
                                 LOG.info("Brewfather batch: " + batch);
                                 LOG.info("No Geeks Brewing batch (before): " + before);
-                                batchRepository.save(batch(batch, before.id()))
+                                batchRepository.save(batch(batch, before.batchId()))
                                         .subscribe(after -> LOG.info("No Geeks Brewing batch (after): " + after));
                             });
 

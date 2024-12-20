@@ -2,10 +2,10 @@ package com.nogeeksbrewing.graphql.json;
 
 import org.springframework.data.annotation.Id;
 
-public record Batch(@Id Long id,
+public record Batch(@Id Long batchId,
                     String brewfatherId,
-                    String name,
+                    String batchName,
                     Long batchNumber,
                     Long batchDate,
-                    String status,
-                    String style) { }
+                    String batchStatus,
+                    String batchStyle) { }

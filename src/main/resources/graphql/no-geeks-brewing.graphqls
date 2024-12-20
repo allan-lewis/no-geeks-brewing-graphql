@@ -3,10 +3,10 @@ type Query {
 }
 
 type Batch {
-    id: ID!
-    name: String
+    batchId: ID!
+    batchName: String
     batchNumber: Float
     batchDate: Float
-    status: String
-    style: String
+    batchStatus: String
+    batchStyle: String
 }
