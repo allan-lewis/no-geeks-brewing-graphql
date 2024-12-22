@@ -1,5 +1,5 @@
 type Query {
-    batches: [Batch]
+    batches(batchDate: Float): [Batch]
 }
 
 type Batch {
