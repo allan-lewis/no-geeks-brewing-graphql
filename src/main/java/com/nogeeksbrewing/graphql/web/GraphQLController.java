@@ -3,7 +3,6 @@ package com.nogeeksbrewing.graphql.web;
 import com.nogeeksbrewing.graphql.json.Batch;
 import com.nogeeksbrewing.graphql.r2dbc.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,8 @@ public class GraphQLController {
     }
 
     @QueryMapping
-    public Flux<Batch> batches(@Argument Float batchDate) {
-        return batchRepository.findAll();
+    public Flux<Batch> batches(@Argument Long batchDate) {
+        return batchRepository.findByBatchDateGreaterThanEqual(batchDate);
     }
 
 }
