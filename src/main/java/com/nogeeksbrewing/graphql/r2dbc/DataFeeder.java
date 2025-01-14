@@ -97,7 +97,7 @@ public class DataFeeder {
                 batch.id,
                 batch.name,
                 batch.batchNumber,
-                batch.brewDate,
+                batch.brewDate / 1000,
                 batch.status,
                 batch.recipe.style.name);
     }
