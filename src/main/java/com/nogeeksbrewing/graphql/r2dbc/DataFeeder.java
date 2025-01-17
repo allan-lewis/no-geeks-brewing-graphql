@@ -99,13 +99,15 @@ public class DataFeeder {
                 batch.batchNumber,
                 batch.brewDate,
                 batch.status,
-                batch.recipe.style.name);
+                batch.recipe.style.name,
+                batch.share);
     }
 
     private record BrewfatherBatch(@JsonProperty("_id") String id,
                                    @JsonProperty String name,
                                    @JsonProperty Long brewDate,
                                    @JsonProperty String status,
+                                   @JsonProperty("_share") String share,
                                    @JsonProperty("batchNo") Long batchNumber,
                                    @JsonProperty BrewfatherRecipe recipe) { }
 

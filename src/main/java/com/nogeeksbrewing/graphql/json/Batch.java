@@ -8,4 +8,5 @@ public record Batch(@Id Long batchId,
                     Long batchNumber,
                     Long batchDate,
                     String batchStatus,
-                    String batchStyle) { }
+                    String batchStyle,
+                    String batchUrl) { }

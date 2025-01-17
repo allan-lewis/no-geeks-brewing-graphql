@@ -9,4 +9,5 @@ type Batch {
     batchDate: Float
     batchStatus: String
     batchStyle: String
+    batchUrl: String
 }
