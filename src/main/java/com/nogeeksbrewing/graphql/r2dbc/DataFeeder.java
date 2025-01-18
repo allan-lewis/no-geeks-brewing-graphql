@@ -100,7 +100,7 @@ public class DataFeeder {
                 batch.brewDate,
                 batch.status,
                 batch.recipe.style.name,
-                "https://share.brewfather.app/" + batch.share);
+                batch.share == null ? null : "https://share.brewfather.app/" + batch.share);
     }
 
     private record BrewfatherBatch(@JsonProperty("_id") String id,
