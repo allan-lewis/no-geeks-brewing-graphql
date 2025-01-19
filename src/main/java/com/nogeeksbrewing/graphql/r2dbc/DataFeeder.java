@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,6 +62,8 @@ public class DataFeeder {
         String last = "";
         boolean keepGoing = true;
 
+        List<String> allRecipeIds = new ArrayList<>();
+
         while (keepGoing) {
             RequestEntity<String> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create(url + last));
 
@@ -78,6 +82,7 @@ public class DataFeeder {
                                 LOG.info("No Geeks Brewing batch (before): " + before);
                                 batchRepository.save(batch(batch, before.batchId()))
                                         .subscribe(after -> LOG.info("No Geeks Brewing batch (after): " + after));
+                                allRecipeIds.add(batch.id);
                             });
 
                     last = batch.id;
@@ -90,6 +95,13 @@ public class DataFeeder {
 
             batchRepository.count().subscribe(count -> LOG.info("Repository size: " + count));
         }
+
+        batchRepository.findAll().subscribe(batch -> { if (!allRecipeIds.contains(batch.brewfatherId())) {
+            LOG.info("Deleting batch: " + batch);
+            batchRepository.delete(batch).subscribe();
+        }});
+
+        batchRepository.count().subscribe(count -> LOG.info("Final repository size: " + count));
     }
 
     private Batch batch(BrewfatherBatch batch, Long id) {
