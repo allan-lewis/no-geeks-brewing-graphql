@@ -19,7 +19,8 @@ public class GraphQLController {
 
     @QueryMapping
     public Flux<Batch> batches(@Argument Long batchDate) {
-        return batchRepository.findByBatchDateGreaterThanEqual(batchDate);
+        throw new RuntimeException("Oops!");
+//        return batchRepository.findByBatchDateGreaterThanEqual(batchDate);
     }
 
 }
